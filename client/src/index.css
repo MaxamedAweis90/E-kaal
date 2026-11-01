@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Surfaces & Backgrounds */
+  --bg: #08100b;
+  --bg-alt: #0c1610;
+  --surface: #111c15;
+  --surface-2: #16241b;
+  --border: #213328;
+  --glass: rgba(17, 28, 21, 0.72);
+
+  /* Primary Brand & Actions */
+  --primary: #1fbf55;
+  --primary-600: #17a648;
+  --primary-700: #05a237;
+  --primary-soft: rgba(31, 191, 85, 0.13);
+  --accent: #4ade80;
+
+  /* Typography */
+  --text: #e8f3eb;
+  --text-2: #c3d3c8;
+  --muted: #8fa396;
+
+  /* Status Indicators */
+  --in: #05a237; /* Positive cash inflow, paid states */
+  --out: #f87171; /* Cash outflow, pending debt, alert states */
+  --warning: #f59e0b; /* Subscription expiring, thresholds */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Custom scrollbars matching theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}

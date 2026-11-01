@@ -1,0 +1,268 @@
+{
+  "name": "Ekaal Web Management API - Phase 3 LiteClient Collection",
+  "version": "1.0.0",
+  "baseUrl": "http://localhost:5000/api/v1",
+  "defaultHeaders": {
+    "Content-Type": "application/json",
+    "x-merchant-id": "6724619b88ef39d224b1712a"
+  },
+  "endpoints": [
+    {
+      "name": "Health Check",
+      "method": "GET",
+      "path": "/health",
+      "headers": {},
+      "body": null,
+      "description": "Verifies server is alive and returns status ok"
+    },
+    {
+      "name": "Dashboard Overview",
+      "method": "GET",
+      "path": "/dashboard/overview",
+      "headers": {
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": null,
+      "description": "Fetches aggregated receivables, payables, top debtors, and subscription alert"
+    },
+    {
+      "name": "List Customers",
+      "method": "GET",
+      "path": "/customers?search=&status=ACTIVE&sort=balance_desc",
+      "headers": {
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": null,
+      "description": "Lists customer receivables ledger with optional search, status, and sort filters"
+    },
+    {
+      "name": "Create Customer",
+      "method": "POST",
+      "path": "/customers",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": {
+        "name": "Abdikafi Mohamed Warsame",
+        "phone": "612121112",
+        "creditLimit": 1000.0
+      },
+      "description": "Creates a new customer account initialized with zero balance"
+    },
+    {
+      "name": "Customer - Add Debt (DEBT_ADD)",
+      "method": "POST",
+      "path": "/customers/{{customerId}}/transactions",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": {
+        "type": "DEBT_ADD",
+        "amount": 500.0,
+        "note": "Rice & Cooking oil credit invoice"
+      },
+      "description": "Increases customer totalDebt and balance"
+    },
+    {
+      "name": "Customer - Log Payment (DEBT_PAYMENT)",
+      "method": "POST",
+      "path": "/customers/{{customerId}}/transactions",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": {
+        "type": "DEBT_PAYMENT",
+        "amount": 150.0,
+        "note": "EVC Plus installment payment"
+      },
+      "description": "Increases customer paid and decreases balance"
+    },
+    {
+      "name": "List Vendors",
+      "method": "GET",
+      "path": "/vendors",
+      "headers": {
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": null,
+      "description": "Lists all suppliers with balance owed"
+    },
+    {
+      "name": "Create Vendor",
+      "method": "POST",
+      "path": "/vendors",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": {
+        "name": "Raqiib Telecom & Data Supplier",
+        "phone": "614333349",
+        "totalOwed": 1000.0
+      },
+      "description": "Registers commercial supplier and initial accounts payable balance"
+    },
+    {
+      "name": "Pay Vendor",
+      "method": "POST",
+      "path": "/vendors/{{vendorId}}/pay",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": {
+        "amount": 400.0,
+        "note": "Direct bank settlement"
+      },
+      "description": "Subtracts settlement amount from vendor totalOwed"
+    },
+    {
+      "name": "List Products",
+      "method": "GET",
+      "path": "/products",
+      "headers": {
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": null,
+      "description": "Lists inventory stock items and aggregate inventory valuation metrics"
+    },
+    {
+      "name": "Create Product",
+      "method": "POST",
+      "path": "/products",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": {
+        "name": "Biyo Dizaani 1.5L (Pack of 12)",
+        "barcode": "600123456789",
+        "stockCount": 80,
+        "unitCost": 10.0,
+        "sellingPrice": 12.0
+      },
+      "description": "Adds product item and auto-computes margin = sellingPrice - unitCost"
+    },
+    {
+      "name": "Update Product",
+      "method": "PUT",
+      "path": "/products/{{productId}}",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": {
+        "stockCount": 95,
+        "sellingPrice": 12.5
+      },
+      "description": "Updates inventory parameters and recalculates margin"
+    },
+    {
+      "name": "Reseller Utility Dispatch",
+      "method": "POST",
+      "path": "/reseller/transact",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": {
+        "provider": "HORMUUD",
+        "recipientPhone": "614999999",
+        "amount": 100.0,
+        "earningProfit": 17.0
+      },
+      "description": "Records telecom utility resale dispatch and logs netAmount = amount + profit"
+    },
+    {
+      "name": "Reseller History",
+      "method": "GET",
+      "path": "/reseller/history",
+      "headers": {
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": null,
+      "description": "Fetches recent reseller transactions stream"
+    },
+    {
+      "name": "Broadcast - Dispatch SMS Notification",
+      "method": "POST",
+      "path": "/broadcasts/send",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": {
+        "message": "Ogaysiis: Fadlan xasuuso inaad iska bixiso deymaha kugu xusan muddo 3 maalmood gudahood ah. Mahadsanid!",
+        "recipientIds": ["{{customerId}}"]
+      },
+      "description": "Dispatches message to recipient IDs strictly enforcing <= 125 characters limit"
+    },
+    {
+      "name": "Broadcast Logs",
+      "method": "GET",
+      "path": "/broadcasts/logs",
+      "headers": {
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": null,
+      "description": "Fetches broadcast transmission logs"
+    },
+    {
+      "name": "Subscription Plans",
+      "method": "GET",
+      "path": "/subscriptions/plans",
+      "headers": {},
+      "body": null,
+      "description": "Fetches active pricing tiers: 1_MONTH ($2.99), 6_MONTHS ($14.99), 12_MONTHS ($29.99)"
+    },
+    {
+      "name": "Subscription Activation",
+      "method": "POST",
+      "path": "/subscriptions/activate",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": {
+        "tier": "1_MONTH",
+        "phone": "614888881"
+      },
+      "description": "Activates plan and advances merchant expiration date (30 / 180 / 365 days)"
+    },
+    {
+      "name": "Get Merchant Profile",
+      "method": "GET",
+      "path": "/merchants/profile",
+      "headers": {
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": null,
+      "description": "Fetches store metadata, support contact channels, and subscription info"
+    },
+    {
+      "name": "Update Merchant Profile",
+      "method": "PUT",
+      "path": "/merchants/profile",
+      "headers": {
+        "Content-Type": "application/json",
+        "x-merchant-id": "{{merchantId}}"
+      },
+      "body": {
+        "shopName": "Mudnaan Premium Store",
+        "email": "contact@mudnaan.com",
+        "phone": "614888881",
+        "supportChannels": {
+          "whatsapp": "+252614888881",
+          "call": "+252614888881",
+          "facebook": "https://facebook.com/mudnaan",
+          "tiktok": "@mudnaan_store"
+        }
+      },
+      "description": "Updates merchant store profile and support channels"
+    }
+  ]
+}
+
