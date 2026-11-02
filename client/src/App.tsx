@@ -1,46 +1,43 @@
 import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { AppShell } from "./components/layout/AppShell";
+import { AppLayout } from "./components/layout";
+import { DashboardView } from "./components/features/DashboardView";
 import { useAppStore } from "./store/useAppStore";
-import { DashboardView } from "./views/DashboardView";
-import { DeymahaView } from "./views/DeymahaView";
-import { ResellerView } from "./views/ResellerView";
-import { ProductsView } from "./views/ProductsView";
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 30, // 30 seconds
-      retry: 1,
+      staleTime: 1000 * 60 * 5,
+      retry: false,
     },
   },
 });
 
 const MainContent: React.FC = () => {
-  const { activeTab } = useAppStore();
+  const activeModule = useAppStore((state) => state.activeModule);
 
-  switch (activeTab) {
+  switch (activeModule) {
     case "dashboard":
       return <DashboardView />;
-    case "deymaha":
-      return <DeymahaView />;
-    case "reseller":
-      return <ResellerView />;
-    case "products":
-      return <ProductsView />;
     default:
-      return null; // Renders AppShell default empty slot
+      return (
+        <div className="flex-1 min-h-[450px] rounded-[16px] bg-[#141b13] border border-[#233026] flex items-center justify-center">
+          <span className="text-[17px] text-[#6c7c72]">
+            No content loaded — screen display slot
+          </span>
+        </div>
+      );
   }
 };
 
-export function App() {
+export const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <AppShell>
+      <AppLayout>
         <MainContent />
-      </AppShell>
+      </AppLayout>
     </QueryClientProvider>
   );
-}
+};
 
 export default App;

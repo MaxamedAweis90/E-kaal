@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Tokens sampled from plan/screens/Dashboard.jpg */
+  --shell: #0b120a;
+  --surface: #141b13;
+  --surface-hover: #19221a;
+  --border: #233026;
+  --border-soft: #1b2a20;
+  --nav-active-bg: #172319;
+  --nav-active-border: #2e3e33;
+  --input-bg: #161a19;
+
+  --text: #f1f5f2;
+  --text-muted: #9aa69f;
+  --text-dim: #6c7c72;
+
+  --green: #54a376;
+  --green-pill: #2c8e5f;
+  --red: #e0605f;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--shell);
+  color: var(--text);
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+/* Subtle technical grid behind main content */
+.bg-grid-pattern {
+  background-color: #0a110a;
+  background-image:
+    linear-gradient(to right, rgba(35, 62, 42, 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(35, 62, 42, 0.35) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+/* Slim scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2b3a2f;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b5042;
+}

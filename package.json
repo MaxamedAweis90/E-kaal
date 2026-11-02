@@ -1,0 +1,19 @@
+{
+  "name": "ekaal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ekaal Web Management System",
+  "scripts": {
+    "dev": "concurrently -k -p \"[{name}]\" -n \"CLIENT,SERVER\" -c \"cyan.bold,yellow.bold\" \"pnpm run dev:client\" \"pnpm run dev:server\"",
+    "dev:parallel": "pnpm -r --parallel run dev",
+    "dev:client": "pnpm --filter ekaal-client dev",
+    "dev:server": "pnpm --filter ekaal-server dev",
+    "build": "pnpm -r run build",
+    "build:client": "pnpm --filter ekaal-client build",
+    "build:server": "pnpm --filter ekaal-server build",
+    "test": "pnpm --filter ekaal-server test"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}

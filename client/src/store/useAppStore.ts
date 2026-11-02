@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type NavTab =
+export type NavigationModule =
   | "dashboard"
   | "deymaha"
   | "vendor"
@@ -11,25 +11,21 @@ export type NavTab =
   | "settings";
 
 interface AppState {
-  activeTab: NavTab;
-  setActiveTab: (tab: NavTab) => void;
-  isCalculatorOpen: boolean;
-  toggleCalculator: () => void;
-  setCalculatorOpen: (open: boolean) => void;
-  searchQuery: string;
-  setSearchQuery: (query: string) => void;
-  selectedCustomerId: string | null;
-  setSelectedCustomerId: (id: string | null) => void;
+  activeModule: NavigationModule;
+  setActiveModule: (module: NavigationModule) => void;
+  isSidebarCollapsed: boolean;
+  toggleSidebar: () => void;
+  isMobileMenuOpen: boolean;
+  setMobileMenuOpen: (open: boolean) => void;
+  toggleMobileMenu: () => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
-  activeTab: "dashboard",
-  setActiveTab: (tab) => set({ activeTab: tab }),
-  isCalculatorOpen: false,
-  toggleCalculator: () => set((state) => ({ isCalculatorOpen: !state.isCalculatorOpen })),
-  setCalculatorOpen: (open) => set({ isCalculatorOpen: open }),
-  searchQuery: "",
-  setSearchQuery: (query) => set({ searchQuery: query }),
-  selectedCustomerId: null,
-  setSelectedCustomerId: (id) => set({ selectedCustomerId: id }),
+  activeModule: "dashboard",
+  setActiveModule: (module) => set({ activeModule: module, isMobileMenuOpen: false }),
+  isSidebarCollapsed: false,
+  toggleSidebar: () => set((state) => ({ isSidebarCollapsed: !state.isSidebarCollapsed })),
+  isMobileMenuOpen: false,
+  setMobileMenuOpen: (open) => set({ isMobileMenuOpen: open }),
+  toggleMobileMenu: () => set((state) => ({ isMobileMenuOpen: !state.isMobileMenuOpen })),
 }));
