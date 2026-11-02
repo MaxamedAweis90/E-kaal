@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Icons } from "../icons";
+import { X } from "lucide-react";
 import { cn } from "../../utils/cn";
 
 export interface ModalProps {
@@ -13,6 +13,8 @@ export interface ModalProps {
   className?: string;
 }
 
+const WIDTHS = { sm: 380, md: 460, lg: 560, xl: 720 };
+
 export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
@@ -25,64 +27,47 @@ export const Modal: React.FC<ModalProps> = ({
 }) => {
   useEffect(() => {
     if (!isOpen) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
-  const maxWidths = {
-    sm: "max-w-sm",
-    md: "max-w-md",
-    lg: "max-w-lg",
-    xl: "max-w-xl",
-  };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop overlay */}
-      <div
-        onClick={onClose}
-        className="fixed inset-0 bg-[#000100]/80 backdrop-blur-sm transition-opacity"
-      />
+      <div onClick={onClose} className="fixed inset-0 bg-black/70" />
 
-      {/* Modal Dialog */}
       <div
+        style={{ maxWidth: WIDTHS[maxWidth] }}
         className={cn(
-          "relative z-10 w-full bg-[#111C15] border border-[#213328] rounded-[16px] shadow-2xl flex flex-col overflow-hidden text-[#E8F3EB] font-sans animate-in fade-in zoom-in-95 duration-150",
-          maxWidths[maxWidth],
+          "relative z-10 w-full bg-[#141b13] border border-[#233026] rounded-[16px] shadow-2xl flex flex-col overflow-hidden text-[#f1f5f2] font-sans",
           className
         )}
       >
-        {/* Header */}
         {(title || description) && (
-          <div className="p-4 border-b border-[#213328] flex items-start justify-between gap-3">
+          <div className="px-[22px] pt-[20px] pb-[14px] border-b border-[#233026] flex items-start justify-between gap-3">
             <div>
-              {title && <h3 className="text-sm font-bold text-[#E8F3EB]">{title}</h3>}
+              {title && <h3 className="text-[22px] font-medium leading-[30px]">{title}</h3>}
               {description && (
-                <p className="text-xs text-[#8FA396] mt-0.5">{description}</p>
+                <p className="text-[16px] text-[#9aa69f] mt-[2px]">{description}</p>
               )}
             </div>
             <button
               onClick={onClose}
-              className="p-1 hover:bg-[#16241B] rounded-[9px] text-[#8FA396] hover:text-[#E8F3EB] transition-colors"
+              className="p-[6px] rounded-[8px] text-[#9aa69f] hover:text-[#f1f5f2] hover:bg-[#1a231b]"
             >
-              <Icons.Close className="w-4 h-4" />
+              <X className="w-[20px] h-[20px]" />
             </button>
           </div>
         )}
 
-        {/* Content */}
-        <div className="p-4 overflow-y-auto max-h-[75vh]">{children}</div>
+        <div className="px-[22px] py-[18px] overflow-y-auto max-h-[70vh]">{children}</div>
 
-        {/* Footer */}
         {footer && (
-          <div className="p-3 border-t border-[#213328] bg-[#0C1610] flex items-center justify-end gap-2">
+          <div className="px-[22px] py-[14px] border-t border-[#233026] flex items-center justify-end gap-[10px]">
             {footer}
           </div>
         )}

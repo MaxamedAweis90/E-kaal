@@ -7,11 +7,13 @@ import { AvatarDropdown } from "./AvatarDropdown";
 interface TopHeaderProps {
   subscriptionRemainingDays?: number;
   subscriptionTier?: string;
+  unreadCount?: number;
 }
 
 export const TopHeader: React.FC<TopHeaderProps> = ({
   subscriptionRemainingDays = 28,
   subscriptionTier = "1 Month",
+  unreadCount = 0,
 }) => {
   const {
     globalSearchQuery,
@@ -87,9 +89,11 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           title="Notifications"
         >
           <Icons.Bell className="w-[20px] h-[20px]" strokeWidth={1.6} />
-          <span className="absolute top-[3px] right-[3px] w-[16px] h-[16px] bg-[#e0494f] text-white text-[10px] font-medium rounded-full flex items-center justify-center leading-none">
-            1
-          </span>
+          {unreadCount > 0 && (
+            <span className="absolute top-[3px] right-[3px] min-w-[16px] h-[16px] px-[3px] bg-[#e0494f] text-white text-[10px] font-medium rounded-full flex items-center justify-center leading-none">
+              {unreadCount}
+            </span>
+          )}
         </button>
 
         {/* Avatar 40 x 40 */}

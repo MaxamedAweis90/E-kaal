@@ -8,32 +8,20 @@ This project has strict visual reference designs locked in `plan/screens/` (`app
    - NEVER add extra decorative borders, glowing drop shadows, giant `<kbd>` prompts, or synthetic category headers ("Dual Ledgers", "Operations & Tools").
    - Keep labels and headings strictly minimal, exact, and concise (e.g., "Active Ledgers", "Quick Actions", "Largest Balances", "Search anything...").
 
-2. **App Shell Exact Match (`appshell.png`):**
-   - **Window Controls:** macOS-style top-left window dots (red `#ff5f56`, yellow `#ffbd2e`, green `#27c93f`).
-   - **Background:** Technical dark green grid pattern (`#060e08` with subtle grid lines `rgba(27, 48, 33, 0.45)`).
-   - **Sidebar:**
-     - Top logo: Green minimalist wallet icon glyph + **E-kaal** (bold white) + `MERCHANT SYSTEM` (small uppercase grey).
-     - Single flat list of 8 navigation items:
-       1. Dashboard
-       2. Deymaha
-       3. Vendor
-       4. Products
-       5. Reseller
-       6. Dir Ogeysiis
-       7. Reports
-       8. Settings
-     - Active item: Clean rounded container `rounded-xl bg-[#142319] border border-[#23422e] text-[#f0f6f2]`.
-     - Inactive item: Clean transparent hover `text-[#8da294] hover:text-[#f0f6f2] hover:bg-[#0f1d13]`.
+2. **App Shell & Coordinate System (`1376×741` below removed 27px mock chrome):**
+   - **No Desktop Window Banner:** Do NOT render macOS red/yellow/green window dots at the top of the app.
+   - **Viewport Scaling:** Scaled proportionally via `useViewportScale` (`1376×741` design space; content width `1099px` inside `24px` padding).
+   - **Palette & Fonts:** Shell `#0b120a`, panel `#141b13`, border `#233026`, grid `#0a110a` (`34px` lines), green `#54a376` / `#1faa5a`, red `#e0605f`. Numbers use Poppins (`font-sans`), NOT `font-mono`.
+   - **Sidebar (`228px`):**
+     - Top logo (`68px` header): `42px` `WalletLogo` + **E-kaal** (`27px` semibold) + `MERCHANT SYSTEM` (`8.5px` uppercase).
+     - Single flat list of 8 navigation items (`42px` height, `17px` text, `10px` gap): Dashboard, Deymaha, Vendor, Products, Reseller, Dir Ogeysiis, Reports, Settings.
+     - Active item: `rounded-[10px] bg-[#172319] border border-[#2e3e33] text-[#f1f5f2]`.
      - No category headers, no footer cards, no version text.
-   - **Top Header:**
-     - Left: Magnifying glass icon + input with exact placeholder `"Search anything..."` in dark rounded box.
-     - Right:
-       - Calculator icon button: Square button with `+ - / x =` math symbols (`w-9 h-9 rounded-lg bg-[#0e1b13] border border-[#1b3122]`).
-       - Subscription pill: Solid green pill `1 Month • 28 days left` (`bg-[#1a8754] text-white text-xs font-semibold px-4 py-1.5 rounded-full`).
-       - Notification bell: Bell icon with red badge dot containing `1`.
-       - User profile avatar: Clean circle avatar without noisy text.
+   - **Top Header (`68px`):**
+     - Left: `332×41` rounded box (`bg-[#161a19]`) with `"Search anything..."`.
+     - Right: `44×44` `CalcMathIcon` button, `40px` green pill (`bg-[#2c8e5f]`) `1 Month • 28 days left`, `42×42` bell button (red count badge shown ONLY when `unreadCount > 0`), `40×40` circle avatar.
    - **Empty Slot View:**
-     - Clean rounded-2xl card on grid background with exact text: `"No content loaded — screen display slot"` (no icons, no kbd tags, no extra paragraphs).
+     - Clean `rounded-[16px]` card on grid background with exact text: `"No content loaded — screen display slot"`.
 
 3. **Dashboard Exact Match (`Dashboard.jpg`):**
    - **Top 4 KPI Cards:**
