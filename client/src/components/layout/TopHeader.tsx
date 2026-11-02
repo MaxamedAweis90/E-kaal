@@ -99,6 +99,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
         {/* Avatar 40 x 40 */}
         <div className="relative">
           <button
+            data-avatar-trigger
             onClick={(e) => {
               e.stopPropagation();
               toggleAvatarDropdown();

@@ -14,7 +14,7 @@ This project has strict visual reference designs locked in `plan/screens/` (`app
    - **Palette & Fonts:** Shell `#0b120a`, panel `#141b13`, border `#233026`, grid `#0a110a` (`34px` lines), green `#54a376` / `#1faa5a`, red `#e0605f`. Numbers use Poppins (`font-sans`), NOT `font-mono`.
    - **Sidebar (`228px`):**
      - Top logo (`68px` header): `42px` `WalletLogo` + **E-kaal** (`27px` semibold) + `MERCHANT SYSTEM` (`8.5px` uppercase).
-     - Single flat list of 8 navigation items (`42px` height, `17px` text, `10px` gap): Dashboard, Deymaha, Vendor, Products, Reseller, Dir Ogeysiis, Reports, Settings.
+     - Single flat list of 7 navigation items (`42px` height, `17px` text, `10px` gap): Dashboard, Deymaha, Vendor, Products, Reseller, Dir Ogeysiis, Reports. (Settings is accessed from the topbar avatar dropdown, not the sidebar.)
      - Active item: `rounded-[10px] bg-[#172319] border border-[#2e3e33] text-[#f1f5f2]`.
      - No category headers, no footer cards, no version text.
    - **Top Header (`68px`):**
