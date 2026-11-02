@@ -39,6 +39,9 @@ const MainContent: React.FC = () => {
       return <DirOgeysiisView />;
     case "reports":
       return <ReportsView />;
+    case "invoices":
+    case "receipts":
+    case "settings":
     default:
       return (
         <div className="flex-1 min-h-[450px] rounded-[16px] bg-[#141b13] border border-[#233026] flex items-center justify-center">

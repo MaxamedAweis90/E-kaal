@@ -17,6 +17,8 @@ const NAV_ITEMS: NavItem[] = [
   { id: "reseller", label: "Reseller", icon: "Reseller" },
   { id: "dir-ogeysiis", label: "Dir Ogeysiis", icon: "Broadcast" },
   { id: "reports", label: "Reports", icon: "Reports" },
+  { id: "invoices", label: "Invoices", icon: "Invoices" },
+  { id: "receipts", label: "Receipts", icon: "Receipts" },
 ];
 
 export const SidebarContent: React.FC = () => {

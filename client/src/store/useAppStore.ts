@@ -8,6 +8,8 @@ export type NavigationModule =
   | "reseller"
   | "dir-ogeysiis"
   | "reports"
+  | "invoices"
+  | "receipts"
   | "settings";
 
 interface AppState {

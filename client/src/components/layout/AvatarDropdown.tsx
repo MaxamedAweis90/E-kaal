@@ -49,27 +49,34 @@ export const AvatarDropdown: React.FC<AvatarDropdownProps> = ({ onSelectOption }
 
     if (key === "settings") {
       setActiveModule("settings");
-    } else if (key === "billing") {
-      openModal("SUBSCRIPTION_BILLING");
     } else if (key === "branding") {
       openModal("BRANDING_LOGO_UPLOAD");
+    } else if (key === "billing") {
+      openModal("SUBSCRIPTION_BILLING");
+    } else if (key === "support") {
+      openModal("MERCHANT_SUPPORT");
     }
   };
 
   const profile = merchant.data;
 
+  const itemClass =
+    "w-full h-[38px] flex items-center gap-2.5 px-3 rounded-badge text-sm font-normal transition-colors text-left border whitespace-nowrap";
+
   return (
     <div
       ref={dropdownRef}
-      className="absolute right-0 top-[50px] z-50 w-[240px] bg-[#141b13] border border-[#233026] rounded-[12px] p-[6px] flex flex-col gap-[2px] text-[#f1f5f2] font-sans shadow-xl"
+      role="menu"
+      aria-label="Account and store settings"
+      className="absolute right-0 top-[50px] z-50 w-80 bg-surface border border-border rounded-btn p-1.5 flex flex-col gap-0.5 text-text font-sans shadow-xl"
     >
       {profile && (
-        <div className="px-[12px] py-[10px] mb-[4px] border-b border-[#233026]">
-          <div className="text-[15px] font-medium text-[#f1f5f2] leading-tight truncate">
+        <div className="px-3 py-2.5 mb-1 border-b border-border">
+          <div className="text-sm font-medium text-text leading-tight truncate">
             {profile.shopName}
           </div>
           {(profile.email || profile.phone) && (
-            <div className="text-[13px] text-[#9aa69f] mt-[2px] truncate">
+            <div className="text-xs text-muted mt-0.5 truncate">
               {profile.email || profile.phone}
             </div>
           )}
@@ -77,39 +84,75 @@ export const AvatarDropdown: React.FC<AvatarDropdownProps> = ({ onSelectOption }
       )}
 
       <button
+        type="button"
+        role="menuitem"
         onClick={() => handleAction("settings")}
         className={cn(
-          "w-full h-[38px] flex items-center gap-[10px] px-[12px] rounded-[8px] text-[15px] font-normal transition-colors text-left border",
+          itemClass,
           activeModule === "settings"
-            ? "bg-[#172319] border-[#2e3e33] text-[#f1f5f2]"
-            : "border-transparent text-[#d7dfd9] hover:text-[#f1f5f2] hover:bg-[#192319]"
+            ? "bg-primary-soft border-border text-text"
+            : "border-transparent text-text-2 hover:text-text hover:bg-surface-2"
         )}
       >
-        <Icons.Settings className="w-[18px] h-[18px] text-[#9aa69f] shrink-0" strokeWidth={1.6} />
-        <span>Settings</span>
+        <Icons.Settings
+          className={cn(
+            "w-[18px] h-[18px] shrink-0",
+            activeModule === "settings" ? "text-primary" : "text-muted"
+          )}
+          strokeWidth={1.6}
+        />
+        <span>Store Profile & Settings</span>
       </button>
 
       <button
-        onClick={() => handleAction("billing")}
-        className="w-full h-[38px] flex items-center gap-[10px] px-[12px] rounded-[8px] text-[15px] font-normal text-[#d7dfd9] hover:text-[#f1f5f2] hover:bg-[#192319] transition-colors text-left"
+        type="button"
+        role="menuitem"
+        onClick={() => handleAction("branding")}
+        className={cn(
+          itemClass,
+          "border-transparent text-text-2 hover:text-text hover:bg-surface-2"
+        )}
       >
-        <Icons.CreditCard className="w-[18px] h-[18px] text-[#9aa69f] shrink-0" strokeWidth={1.6} />
+        <Icons.Image className="w-[18px] h-[18px] text-muted shrink-0" strokeWidth={1.6} />
+        <span>Company Branding & Logo Upload</span>
+      </button>
+
+      <button
+        type="button"
+        role="menuitem"
+        onClick={() => handleAction("billing")}
+        className={cn(
+          itemClass,
+          "border-transparent text-text-2 hover:text-text hover:bg-surface-2"
+        )}
+      >
+        <Icons.CreditCard className="w-[18px] h-[18px] text-muted shrink-0" strokeWidth={1.6} />
         <span>Billing & Subscriptions</span>
       </button>
 
       <button
+        type="button"
+        role="menuitem"
         onClick={() => handleAction("support")}
-        className="w-full h-[38px] flex items-center gap-[10px] px-[12px] rounded-[8px] text-[15px] font-normal text-[#d7dfd9] hover:text-[#f1f5f2] hover:bg-[#192319] transition-colors text-left"
+        className={cn(
+          itemClass,
+          "border-transparent text-text-2 hover:text-text hover:bg-surface-2"
+        )}
       >
-        <Icons.LifeBuoy className="w-[18px] h-[18px] text-[#9aa69f] shrink-0" strokeWidth={1.6} />
+        <Icons.LifeBuoy className="w-[18px] h-[18px] text-muted shrink-0" strokeWidth={1.6} />
         <span>Support</span>
       </button>
 
-      <div className="my-[4px] border-t border-[#233026]" />
+      <div className="my-1 border-t border-border" />
 
       <button
+        type="button"
+        role="menuitem"
         onClick={() => handleAction("signout")}
-        className="w-full h-[38px] flex items-center gap-[10px] px-[12px] rounded-[8px] text-[15px] font-normal text-[#e0605f] hover:bg-[#241616] transition-colors text-left"
+        className={cn(
+          itemClass,
+          "border-transparent text-out hover:bg-[#241616]"
+        )}
       >
         <Icons.LogOut className="w-[18px] h-[18px] shrink-0" strokeWidth={1.6} />
         <span>Sign Out</span>

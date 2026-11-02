@@ -5,7 +5,10 @@ export type ModalType =
   | "ADD_VENDOR"
   | "ADD_PRODUCT"
   | "LOG_TRANSACTION"
+  | "STORE_PROFILE_SETTINGS"
+  | "BRANDING_LOGO_UPLOAD"
   | "SUBSCRIPTION_BILLING"
+  | "MERCHANT_SUPPORT"
   | (string & {});
 
 interface UIState {
