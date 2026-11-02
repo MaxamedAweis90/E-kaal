@@ -81,3 +81,37 @@ export interface MerchantProfile {
   phone: string;
   email: string;
 }
+
+export type InvoiceStatus = "DRAFT" | "ISSUED" | "PAID" | "OVERDUE" | "CANCELLED";
+
+export interface InvoiceLineItem {
+  id: string;
+  productId?: string;
+  description: string;
+  quantity: number;
+  unitPrice: number;
+  total: number;
+}
+
+export interface Invoice {
+  id: string;
+  invoiceNumber: string;
+  customerId?: string;
+  customerName: string;
+  customerPhone: string;
+  status: InvoiceStatus;
+  issueDate: string;
+  dueDate: string;
+  items: InvoiceLineItem[];
+  subtotal: number;
+  discount: number;
+  taxRate: number;
+  taxAmount: number;
+  total: number;
+  amountPaid: number;
+  balanceDue: number;
+  notes?: string;
+  paidAt?: string;
+  createdAt: string;
+  updatedAt: string;
+}

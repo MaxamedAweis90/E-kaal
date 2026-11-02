@@ -27,6 +27,9 @@ import {
   CreditCard,
   LifeBuoy,
   LogOut,
+  Download,
+  Printer,
+  Trash2,
 } from "lucide-react";
 
 export const WalletLogo: React.FC<{ className?: string }> = ({
@@ -97,4 +100,7 @@ export const Icons = {
   CreditCard,
   LifeBuoy,
   LogOut,
+  Download,
+  Printer,
+  Trash: Trash2,
 };

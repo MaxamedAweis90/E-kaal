@@ -5,3 +5,4 @@ export * from "./ProductsView";
 export * from "./ResellerView";
 export * from "./DirOgeysiisView";
 export * from "./ReportsView";
+export * from "./InvoicesView";

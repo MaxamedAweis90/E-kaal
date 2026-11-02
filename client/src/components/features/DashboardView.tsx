@@ -186,7 +186,7 @@ export const DashboardView: React.FC = () => {
                 },
                 {
                   label: "Invoices",
-                  module: "reports" as const,
+                  module: "invoices" as const,
                   icon: <FileText className="w-[34px] h-[34px] text-[#5b8def]" strokeWidth={1.4} />,
                 },
                 {

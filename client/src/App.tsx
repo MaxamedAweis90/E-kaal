@@ -5,6 +5,7 @@ import {
   DashboardView,
   DeymahaView,
   DirOgeysiisView,
+  InvoicesView,
   ProductsView,
   ReportsView,
   ResellerView,
@@ -40,6 +41,7 @@ const MainContent: React.FC = () => {
     case "reports":
       return <ReportsView />;
     case "invoices":
+      return <InvoicesView />;
     case "receipts":
     case "settings":
     default:
